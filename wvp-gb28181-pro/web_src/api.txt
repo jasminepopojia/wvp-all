@@ -1,0 +1,98 @@
+申请用户表中的数据项：
+id: 唯一标识
+time: 申请日期
+username：用户姓名
+email：用户邮箱
+pass：用户密码
+
+霸凌事件表中的数据项：
+id: 唯一标识
+date：发生日期
+position：发生地点
+camera：摄像机编号
+image：预览图片
+duration：视频时长
+time：发生时间
+
+历史事件表中的数据项：
+id: 唯一标识
+date：发生日期
+position：发生地点
+camera：摄像机编号
+image：预览图片
+duration：视频时长
+time：发生时间
+
+用户表中新增数据项：
+phonenumber：用户手机号
+email：用户邮箱
+
+注册页面： 
+
+api: {url}/api/user/register/{ruleform} 
+
+ ruleForm: {
+        user: '',
+        mobile: '',
+        email: '',
+        pass: '',
+        
+      },
+
+功能描述：在数据库将表单内容添加到申请用户表中（申请用户表要自己创建一个）
+                
+
+人员管理页面：
+api:{url}/api/user/require
+
+
+功能描述：将数据库中的申请用户表的数据传递到前端（参考将用户表的数据传递到前端的代码，也就是wvp原先的代码）。返回值的名称为list
+
+
+api:{url}/api/user/deny/{id}
+
+功能描述：根据唯一标识id完成对于申请用户的审核不通过，将申请用户从申请用户表中删除。
+
+api：{url}/api/user/agree/{id}
+
+功能描述： 根据唯一标识id完成对于申请用户的审核通过，将申请用户从申请用户表中删除，将申请用户的信息录入到用户表中，并且向用户发送短信。
+
+
+历史监控页面：
+api: {url}/api/history/list
+
+功能描述：将数据库中的历史事件表中的数据传递到前端（参考将用户表的数据传递到前端的代码，也就是wvp原先的代码）。返回值的名称为list
+
+api：{url}/api/history/play/path/{videoId}
+
+功能描述：通过唯一标识videoId将视频的播放地址传递到前端，返回值的名称为httpsPath和httpPath
+
+api：{url}/api/history/searchlist/{params}
+ params: {
+         
+          startTime: 开始时间,
+          endTime: 结束时间,
+          startDate: 开始日期,
+          endDate: 结束日期
+         
+        }
+功能描述：通过开始时间，结束时间，开始日期，结束日期给出的范围筛查出符合要求的历史事件表中的数据，传递到前端。返回值的名称为list
+
+
+
+事件搜索页面：
+api同事件列表页面
+
+
+事件列表页面：
+api: {url} /api/event/list
+
+功能描述：将数据库中的霸凌事件表中的数据传递到前端（参考将用户表的数据传递到前端的代码，也就是wvp原先的代码）。返回值的名称为eventList
+
+api：{url}/api/event/play/path/{videoId}
+
+功能描述：通过唯一标识videoId将视频的播放地址传递到前端，返回值的名称为httpsPath和httpPath
+
+
+实时监控页面：
+暂时不需要修改代码，但是要接入摄像头数据流运行一下看一下能不能正确的显示
